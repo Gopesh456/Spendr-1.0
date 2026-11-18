@@ -1,0 +1,6 @@
+<resources>
+    <style name="Theme.Spendr" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:windowBackground">@color/bg</item>
+    </style>
+    <color name="bg">#FFF6F5FB</color>
+</resources>
