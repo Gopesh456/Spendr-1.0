@@ -2,6 +2,8 @@
 
 A personal expense tracker for Android that builds itself from your bank SMS. Everything stays on the phone.
 
+**[⬇️ Download the latest APK](https://github.com/Gopesh456/Spendr-1.0/releases/latest)** · Android 8.0+ · [MIT licensed](LICENSE) · [Contributions welcome](CONTRIBUTING.md)
+
 ## What it does
 
 - **Tracks spending automatically** from Indian bank / UPI / card SMS (tuned on IDFC FIRST, SBI, HDFC, ICICI, Axis, Kotak formats) and new messages as they arrive.
@@ -12,6 +14,10 @@ A personal expense tracker for Android that builds itself from your bank SMS. Ev
 - **Refunds** from shops come off the purchase they refund (up to ₹50 short for fees the shop keeps).
 - **Remembers your choices**: recategorise one payee and apply it to all their transactions and future SMS.
 - **Find anything** by person, place, date, month, amount range, paid / received or type; add and edit transactions by hand; export to CSV.
+
+## Privacy
+
+Spendr has no internet permission. SMS are read and stored only on your phone, and nothing is ever uploaded.
 
 ## Build
 
@@ -25,10 +31,18 @@ The installable APK is `app/build/outputs/apk/release/app-release.apk`. Release 
 
 ## Install
 
-Copy the APK to the phone and open it, or install over USB:
+Download `Spendr-1.0.apk` from [Releases](https://github.com/Gopesh456/Spendr-1.0/releases/latest) on your phone and open it. If Play Protect blocks it (it can for sideloaded apps that read SMS), install over USB instead:
 
 ```bash
-adb install -r app/build/outputs/apk/release/app-release.apk
+adb install -r Spendr-1.0.apk
 ```
 
 If the SMS permission is greyed out after a sideload, go to Settings → Apps → Spendr → ⋮ → Allow restricted settings.
+
+## Contributing
+
+Found an SMS Spendr reads wrong, or want to add a feature? See [CONTRIBUTING.md](CONTRIBUTING.md). Please redact personal details from any SMS you share.
+
+## License
+
+[MIT](LICENSE)
