@@ -34,7 +34,9 @@ import androidx.compose.material3.rememberDatePickerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -49,6 +51,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.isSpecified
 import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.delay
 import java.time.Instant
@@ -61,8 +64,15 @@ import java.time.format.DateTimeFormatter
 fun AnimatedMoney(value: Double, style: TextStyle, modifier: Modifier = Modifier, color: Color = Color.Unspecified, prefix: String = "") {
     val a = remember { Animatable(0f) }
     LaunchedEffect(value) { a.animateTo(value.toFloat(), tween(900, easing = FastOutSlowInEasing)) }
+    // shrink the font until the amount fits its tile instead of clipping digits off (₹46,753 → "₹46,75")
+    var scale by remember { mutableFloatStateOf(1f) }
     // float loses paise on big numbers mid-animation, so show the exact value once it settles
-    Text(prefix + money(if (a.isRunning) Math.round(a.value).toDouble() else value), style = style, color = color, modifier = modifier, maxLines = 1)
+    Text(
+        prefix + money(if (a.isRunning) Math.round(a.value).toDouble() else value),
+        style = if (style.fontSize.isSpecified) style.copy(fontSize = style.fontSize * scale) else style,
+        color = color, modifier = modifier, maxLines = 1, softWrap = false,
+        onTextLayout = { if (it.hasVisualOverflow && scale > 0.4f) scale *= 0.9f },
+    )
 }
 
 /** Staggered fade + rise when a card first appears. */

@@ -31,10 +31,10 @@ The installable APK is `app/build/outputs/apk/release/app-release.apk`. Release 
 
 ## Install
 
-Download `Spendr-1.0.apk` from [Releases](https://github.com/Gopesh456/Spendr-1.0/releases/latest) on your phone and open it. If Play Protect blocks it (it can for sideloaded apps that read SMS), install over USB instead:
+Download the `Spendr-*.apk` file from [Releases](https://github.com/Gopesh456/Spendr-1.0/releases/latest) on your phone and open it. If Play Protect blocks it (it can for sideloaded apps that read SMS), install over USB instead:
 
 ```bash
-adb install -r Spendr-1.0.apk
+adb install -r Spendr-1.0.1.apk
 ```
 
 If the SMS permission is greyed out after a sideload, go to Settings → Apps → Spendr → ⋮ → Allow restricted settings.
